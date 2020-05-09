@@ -5,6 +5,5 @@ require("channels")
 import { initMapbox } from '../plugins/init_mapbox';
 import "bootstrap";
 
-document.addEventListener('turbolinks:load', () => {
-  initMapbox();
-})
+initMapbox();
+

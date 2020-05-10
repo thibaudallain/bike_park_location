@@ -7,15 +7,13 @@ class PagesController < ApplicationController
         {
           lat: bike_park.lat,
           lng: bike_park.lng,
-          infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park }),
-          image_url: helpers.asset_url('bike_park.png')
+          infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park })
         }
       end
-      @marker_address = [{
+      @marker_address = {
         lat: @searched_address.latitude,
         lng: @searched_address.longitude,
-        image_url: helpers.asset_url('address.png')
-      }]
+      }
     else
       @markers = []
     end

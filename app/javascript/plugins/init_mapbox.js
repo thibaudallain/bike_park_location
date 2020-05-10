@@ -17,43 +17,28 @@ const addMarkersToMap = (map, markers) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
 
     const element = document.createElement('div');
-      element.className = 'marker';
-      if (marker.image_url){
-      element.style.backgroundSize = 'contain';
-      element.style.width = '35px';
-      element.style.height = '35px';
+    element.className = 'marker';
+    element.style.backgroundSize = 'cover';
+    element.style.width = '35px';
+    element.style.height = '35px';
+    element.classList.add('marker');
 
-      new mapboxgl.Marker(element)
-        .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
-        .addTo(map);
-      } else {
-        new mapboxgl.Marker()
-        .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
-        .addTo(map);
-      }
+    new mapboxgl.Marker(element)
+      .setLngLat([ marker.lng, marker.lat ])
+      .setPopup(popup)
+      .addTo(map);
   });
 };
 
 const addAddressToMap = (map, address) => {
-    const popup = new mapboxgl.Popup().setHTML(address.infoWindow);
-    const element = document.createElement('div');
-    if (address.image_url){
-      element.style.backgroundSize = 'contain';
-      element.style.width = '35px';
-      element.style.height = '35px';
-
-    new mapboxgl.Marker(element)
-      .setLngLat([ address.longitude, address.latitude ])
-      .setPopup(popup)
-      .addTo(map);
-    } else {
-      new mapboxgl.Marker()
-      .setLngLat([ address.longitude, address.latitude ])
-      .setPopup(popup)
-      .addTo(map);
-    }
+  const element = document.createElement('div');
+  element.className = 'address';
+  element.style.backgroundSize = 'cover';
+  element.style.width = '35px';
+  element.style.height = '35px';
+  new mapboxgl.Marker(element)
+    .setLngLat([ address.lng, address.lat ])
+    .addTo(map);
 };
 
 const fitMapToMarkers = (map, markers) => {

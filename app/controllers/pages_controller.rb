@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
   def home
+    if params[:query].present?
+      raise
+    end
+
     @bike_parks = BikePark.geocoded
 
     @markers = @bike_parks.map do |bike_park|

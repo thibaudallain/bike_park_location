@@ -6,4 +6,3 @@ import { initMapbox } from '../plugins/init_mapbox';
 import "bootstrap";
 
 initMapbox();
-

@@ -7,7 +7,7 @@ class PagesController < ApplicationController
         {
           lat: bike_park.lat,
           lng: bike_park.lng,
-          infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park })
+          infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: @searched_address })
         }
       end
       @marker_address = {

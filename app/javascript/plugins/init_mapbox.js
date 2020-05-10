@@ -6,7 +6,9 @@ const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/thibaudallain/cka0sb3cb4max1isarbhnr7hu'
+    style: 'mapbox://styles/thibaudallain/cka0sb3cb4max1isarbhnr7hu',
+    center: [2.294481, 48.858370], // starting position
+    zoom: 9 // starting zoom
   });
 };
 

@@ -19,7 +19,6 @@ const addMarkersToMap = (map, markers) => {
     const element = document.createElement('div');
       element.className = 'marker';
       if (marker.image_url){
-        element.style.backgroundImage = `url('${marker.image_url}')`;
       element.style.backgroundSize = 'contain';
       element.style.width = '35px';
       element.style.height = '35px';
@@ -37,6 +36,26 @@ const addMarkersToMap = (map, markers) => {
   });
 };
 
+const addAddressToMap = (map, address) => {
+    const popup = new mapboxgl.Popup().setHTML(address.infoWindow);
+    const element = document.createElement('div');
+    if (address.image_url){
+      element.style.backgroundSize = 'contain';
+      element.style.width = '35px';
+      element.style.height = '35px';
+
+    new mapboxgl.Marker(element)
+      .setLngLat([ address.longitude, address.latitude ])
+      .setPopup(popup)
+      .addTo(map);
+    } else {
+      new mapboxgl.Marker()
+      .setLngLat([ address.longitude, address.latitude ])
+      .setPopup(popup)
+      .addTo(map);
+    }
+};
+
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
@@ -47,8 +66,10 @@ const initMapbox = () => {
   if (mapElement) {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
+    const address = JSON.parse(mapElement.dataset.address);
     if (markers.length !== 0) {
       addMarkersToMap(map, markers);
+      addAddressToMap(map, address);
       fitMapToMarkers(map, markers);
     }
     map.addControl(new mapboxgl.NavigationControl());

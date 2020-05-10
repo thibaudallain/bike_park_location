@@ -2,6 +2,7 @@
   <div id="map"
        style="width: 100vw; height: 100vh;"
        data-markers="<%= @markers.to_json %>"
+       data-address="<%= @marker_address.to_json %>"
        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
   <div class="search-bar-address">

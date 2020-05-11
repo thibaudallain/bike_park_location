@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     if params[:query].present?
       @searched_address = SearchedAddress.create(address: params[:query])
-      @bike_parks = BikePark.near(params[:query], 1)
+      @bike_parks = BikePark.near(params[:query], 0.5)
       @markers = @bike_parks.map do |bike_park|
         {
           lat: bike_park.lat,

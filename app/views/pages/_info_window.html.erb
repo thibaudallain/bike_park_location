@@ -1,10 +1,37 @@
-<h1>Capacité : <%= bike_park.capacity %></h2>
-<h1><%= "à #{(Geocoder::Calculations.distance_between(bike_park, address)*1000).round}m"%></h4>
-<% couvert = bike_park.covered ? "couvert" : "non couvert" %>
-<% gratuit = bike_park.covered ? "gratuit" : "payant" %>
-<% if bike_park.typology.downcase != "inconnu" %>
-  <h4><%= bike_park.typology.capitalize %></h1>
-<% end %>
-<h4><%= "#{couvert} et #{gratuit}" %></h2>
-<h4><%= bike_park.location %></h3>
+<div class="info">
+  <div class="carac">
+    <div class="text">
+      <%= bike_park.capacity %> places
+    </div>
+    <div class="text">
+      <%="#{(Geocoder::Calculations.distance_between(bike_park, address)*1000).round}m"%>
+    </div>
+  </div>
+
+  <div class="carac">
+    <div class="text-clair">
+      <% if bike_park.covered %>
+        non couvert
+      <% else %>
+        couvert
+      <% end %>
+    </div>
+    <div class="text-clair">
+      <% if bike_park.free %>
+        gratuit
+      <% else %>
+        payant
+      <% end %>
+    </div>
+    <% if bike_park.typology.downcase != "inconnu" %>
+      <div class="text-clair">
+        <%= bike_park.typology.capitalize %>
+      </div>
+    <% end %>
+  </div>
+  <div class="lien">
+    <a href='https://citymapper.com/go/r2wgtb5jvm' target="_blank"><img src="https://static.citymapper.com/img/embed/GetMeThere_Citymapper.png" alt="Get directions with Citymapper" /></a>
+  </div>
+</div>
+
 

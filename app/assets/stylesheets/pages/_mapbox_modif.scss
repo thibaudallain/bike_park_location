@@ -1,0 +1,28 @@
+.mapboxgl-popup-content {
+  width: 100vw;
+  position: absolute;
+  top: 70vh;
+  height: 30vh;
+  background-color: transparent;
+}
+
+.mapboxgl-popup{
+  transform:none !important;
+}
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-center .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+    display:none !important;
+}
+
+@media(max-width: 1000px) {
+  .mapboxgl-popup {
+  max-width: 80vw !important;
+  }
+}

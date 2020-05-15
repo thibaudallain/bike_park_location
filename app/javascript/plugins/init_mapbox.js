@@ -18,8 +18,9 @@ const addMarkersToMap = (map, markers) => {
 
     const element = document.createElement('div');
     element.className = 'marker';
-    element.style.backgroundSize = 'cover';
-    element.style.width = '35px';
+    element.style.backgroundSize = 'contain';
+    element.style.backgroundRepeat = 'no-repeat';
+    element.style.backgroundPosition = 'center';
     element.style.height = '35px';
     element.classList.add('marker');
 

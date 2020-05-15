@@ -1,37 +1,49 @@
 <div class="info">
   <div class="carac">
-    <div class="text">
-      <%= bike_park.capacity %> places
+    <div class="places-and-distance">
+      <div class="text">
+        <%= bike_park.capacity %> places
+      </div>
+      <div class="text">
+        <%="#{(Geocoder::Calculations.distance_between(bike_park, address)*1000).round}m"%>
+      </div>
     </div>
-    <div class="text">
-      <%="#{(Geocoder::Calculations.distance_between(bike_park, address)*1000).round}m"%>
+    <div class="more-info">
+      <% if bike_park.typology.downcase != "inconnu" %>
+        <div class="text clair">
+          <%= bike_park.typology.downcase %>
+        </div>
+      <% end %>
+      <div class="text clair">
+        <% if bike_park.covered %>
+          non couvert
+        <% else %>
+          couvert
+        <% end %>
+      </div>
+      <div class="text clair">
+        <% if bike_park.free %>
+          gratuit
+        <% else %>
+          payant
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="carac">
-    <div class="text-clair">
-      <% if bike_park.covered %>
-        non couvert
-      <% else %>
-        couvert
-      <% end %>
+  <% endcoord = "#{bike_park.lat}" + "%2C" + "#{bike_park.lng}" %>
+  <% endname = "parc à vélos" %>
+  <% endaddress = "#{bike_park.location.gsub(" ", "%20").gsub(",","%2C")}" %>
+  <% url = "https://citymapper.com/directions?endcoord=" + endcoord + "&endname=" + endname + "&endaddress=" + endaddress %>
+  <a href="<%= url %>" target="blank">
+    <div class="lien">
+      <%= image_tag "citymapper.png", class: "citymapper" %>
     </div>
-    <div class="text-clair">
-      <% if bike_park.free %>
-        gratuit
-      <% else %>
-        payant
-      <% end %>
-    </div>
-    <% if bike_park.typology.downcase != "inconnu" %>
-      <div class="text-clair">
-        <%= bike_park.typology.capitalize %>
-      </div>
-    <% end %>
-  </div>
-  <div class="lien">
-    <a href='https://citymapper.com/go/r2wgtb5jvm' target="_blank"><img src="https://static.citymapper.com/img/embed/GetMeThere_Citymapper.png" alt="Get directions with Citymapper" /></a>
-  </div>
+  </a>
 </div>
+
+
+
+
 
 

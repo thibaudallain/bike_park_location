@@ -1,9 +1,9 @@
 .info {
-  width: 95vw;
+  width: 40vw;
   margin: auto;
   background-color: rgba(255,255,255,0.9);
   border-radius: 10px;
-  height: 30vh;
+  height: 35vh;
   overflow: auto;
 }
 
@@ -15,6 +15,7 @@
 }
 
 .places-and-distance {
+  padding: 0 0.5em;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -22,6 +23,7 @@
 }
 
 .more-info {
+  padding: 0 0.5em;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -46,8 +48,14 @@
 }
 
 .citymapper {
-  height: 10vh;
   object-fit: cover;
+  height: 100%;
+}
+
+@media(max-width: 350px) {
+  .info {
+    width: 95vw;
+  }
 }
 
 

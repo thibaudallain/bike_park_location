@@ -17,6 +17,5 @@ class PagesController < ApplicationController
     else
       @markers = []
     end
-
   end
 end

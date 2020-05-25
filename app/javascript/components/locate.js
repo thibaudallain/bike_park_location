@@ -1,5 +1,6 @@
 const input = document.querySelector('input');
 const go = document.querySelector(".go");
+const autour = document.querySelector(".geoloc");
 
 const getLocation = () => {
   if (navigator.geolocation) {
@@ -10,17 +11,20 @@ const getLocation = () => {
 }
 
 const showPosition = (position) => {
-  input.value = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-  console.log("Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude);
+  input.value = "Lat:" + position.coords.latitude +
+  ",Lng:" + position.coords.longitude;
   go.disabled = false;
+  go.classList.remove("disabled");
+  autour.disabled = false;
+  autour.classList.remove("disabled");
 }
 
 const getPosition = () => {
-  const autour = document.querySelector(".geoloc");
   autour.addEventListener('click', event => {
     go.disabled = true;
+    go.classList.add("disabled");
+    autour.disabled = true;
+    autour.classList.add("disabled");
     getLocation();
   })
 }

@@ -47,10 +47,36 @@ form {
   height: 98vh !important;
 }
 
+.no-results-container {
+    height: 100vh;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-results {
+  background-color: #c2cae890;
+  color: #1d263b;
+  border-radius: 4px;
+  padding: 1em 2em;
+  font-weight: bolder;
+  font-size: 1.5em;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  max-width: 90vw
+}
+
 .footer {
   position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2vh;
   bottom: 0;
   background-color: rgba(255,255,255,0.6);
-  font-size: 8px;
+  font-size: 10px;
+  text-align: center;
 }

@@ -13,12 +13,21 @@
         id: "search_address",
         placeholder: "Adresse"
       %>
-      <%= submit_tag "Go", class: "go" %>
-      <div class="go geoloc">Autour de moi</div>
-<!--       <%= link_to "Autour de moi", root_path, class: "go geoloc" %>
- -->    <% end %>
+      <div class="autour-go">
+        <div class="go geoloc">Autour de moi</div>
+        <%= submit_tag "Go", class: "go" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<div class="footer">test</div>
+<% if @markers == [] %>
+  <div class="no-results-container">
+    <div class="no-results">
+      Désolé, nous n'avons trouvé aucun parc à vélos à proximité...
+    </div>
+  </div>
+<% end %>
+
+<div class="footer">© les contributeurs d'OpenStreetMap sous licence ODbL</div>
 

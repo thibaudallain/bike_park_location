@@ -9,7 +9,7 @@ csv_options = { col_sep: ';', quote_char: '"', headers: :first_row }
 
 CSV.foreach(filepath, csv_options) do |row|
   covered = row[2] == "OUI"
-  free = row[4] == "OUI"
+  free = row[4] == "NON"
   BikePark.create(
     lat: row[0],
     lng: row[1],

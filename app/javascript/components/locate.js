@@ -1,5 +1,5 @@
 const input = document.querySelector('input');
-const go = document.querySelector(".go");
+const go = document.querySelector("#go");
 const autour = document.querySelector(".geoloc");
 
 const getLocation = () => {

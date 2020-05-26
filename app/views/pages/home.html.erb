@@ -15,13 +15,21 @@
       %>
       <div class="autour-go">
         <div class="go geoloc">Autour de moi</div>
-        <%= submit_tag "Go", class: "go" %>
+        <%= submit_tag "Go", class: "go", id:"go" %>
       </div>
     <% end %>
   </div>
 </div>
 
 <% if @markers == [] %>
+  <div class="no-results-container">
+    <div class="no-results">
+      Lancez votre recherche !
+    </div>
+  </div>
+<% end %>
+
+<% if @markers == ["none"] %>
   <div class="no-results-container">
     <div class="no-results">
       Désolé, nous n'avons trouvé aucun parc à vélos à proximité...

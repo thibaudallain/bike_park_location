@@ -3,11 +3,15 @@
 require "csv"
 
 BikePark.destroy_all
+p "bike parks destroyed"
 
 filepath = 'db/bike_parks_idf.csv'
 csv_options = { col_sep: ';', quote_char: '"', headers: :first_row }
 
+i = 0
+
 CSV.foreach(filepath, csv_options) do |row|
+  i += 1
   covered = row[2] == "OUI"
   free = row[4] == "NON"
   BikePark.create(
@@ -18,4 +22,6 @@ CSV.foreach(filepath, csv_options) do |row|
     free: free,
     typology: row[5]
     )
+  p i
+  p "#{row[0]} #{row[1]}"
 end

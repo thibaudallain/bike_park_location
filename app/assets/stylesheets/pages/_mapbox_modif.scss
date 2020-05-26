@@ -2,17 +2,20 @@
   width: 100vw;
   position: absolute;
   top: 85vh;
-  height: 35vh;
+  height: 45vh;
   background-color: transparent;
+  z-index: 2 !important;
 }
 
 .mapboxgl-popup-content-height {
-  top: 65vh;
+  top: 55vh;
   transition: all .3s ease-out;
+  z-index: 2 !important;
 }
 
 .mapboxgl-popup{
   transform:none !important;
+  z-index: 2 !important;
 }
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,

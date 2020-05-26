@@ -22,6 +22,7 @@ const addMarkersToMap = (map, markers) => {
     element.style.backgroundRepeat = 'no-repeat';
     element.style.backgroundPosition = 'center';
     element.style.height = '35px';
+    element.style.zIndex = '1';
     element.classList.add('marker');
 
     new mapboxgl.Marker(element)
@@ -37,6 +38,7 @@ const addAddressToMap = (map, address) => {
   element.style.backgroundSize = 'cover';
   element.style.width = '35px';
   element.style.height = '35px';
+  element.style.zIndex = '1';
   new mapboxgl.Marker(element)
     .setLngLat([ address.lng, address.lat ])
     .addTo(map);
@@ -53,7 +55,7 @@ const initMapbox = () => {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
     const address = JSON.parse(mapElement.dataset.address);
-    if (markers.length !== 0) {
+    if (markers.length !== 0 && markers[0] !== "none") {
       addMarkersToMap(map, markers);
       addAddressToMap(map, address);
       fitMapToMarkers(map, markers);

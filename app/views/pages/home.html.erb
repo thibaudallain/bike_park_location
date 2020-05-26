@@ -21,21 +21,22 @@
   </div>
 </div>
 
-<% if @markers == [] %>
-  <div class="no-results-container">
+<div class="no-results-container">
+  <div class="alert-message"></div>
+
+  <% if @markers == [] %>
     <div class="no-results">
       Lancez votre recherche !
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<% if @markers == ["none"] %>
-  <div class="no-results-container">
+  <% if @markers == ["none"] %>
     <div class="no-results">
       Désolé, nous n'avons trouvé aucun parc à vélos à proximité...
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+</div>
 
 <div class="footer">© les contributeurs d'OpenStreetMap sous licence ODbL</div>
 

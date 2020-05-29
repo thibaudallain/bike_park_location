@@ -1,0 +1,13 @@
+.ap-icon-pin {
+  display: none;
+}
+
+.ap-suggestion-icon {
+  display: none;
+}
+
+@media(max-width: 1000px) {
+  .ap-name, .ap-address {
+    font-size: 12px;
+  }
+}

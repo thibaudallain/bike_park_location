@@ -1,9 +1,16 @@
 <div class="info">
   <div class="carac">
     <div class="places-and-distance">
-      <div class="text">
-        <%= bike_park.capacity %> places
-      </div>
+      <% if bike_park.capacity.to_i == 0 %>
+      <% elsif bike_park.capacity.to_i == 1 %>
+        <div class="text">
+          <%= bike_park.capacity %> place
+        </div>
+      <% else %>
+        <div class="text">
+          <%= bike_park.capacity %> places
+        </div>
+      <% end %>
       <div class="text">
         <%="#{(Geocoder::Calculations.distance_between(bike_park, address)*1000).round}m"%>
       </div>

@@ -60,7 +60,9 @@ const initMapbox = () => {
       addAddressToMap(map, address);
       fitMapToMarkers(map, markers);
     }
-    map.addControl(new mapboxgl.NavigationControl());
+    map.scrollZoom.enable();
+    map.dragPan.enable();
+    // map.addControl(new mapboxgl.NavigationControl());
   }
 };
 

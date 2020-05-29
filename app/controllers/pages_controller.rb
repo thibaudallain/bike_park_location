@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     if params[:query].present?
-      if /Lat:.+,Lng:.+/.match(params[:query])
+      if /Latitude:.+,Longitude:.+/.match(params[:query])
         latitude = params[:query].split(",")[0].split(":")[1].to_f
         longitude = params[:query].split(",")[1].split(":")[1].to_f
         @geolocation = Geolocation.create(latitude: latitude, longitude: longitude)

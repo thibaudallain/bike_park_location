@@ -9,6 +9,7 @@
   font-weight: bolder;
   font-size: 1.5em;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border: solid 2px transparent;
 }
 
 .geoloc {
@@ -27,6 +28,10 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
+}
+
+.green {
+  border: solid 2px #57a77380;
 }
 
 @media(max-width: 1000px) {

@@ -14,9 +14,9 @@ const getLocation = () => {
 }
 
 const showPosition = (position) => {
-  input.value = "Lat:" + position.coords.latitude +
-  ",Lng:" + position.coords.longitude;
-  ableButtons();
+  input.value = "Latitude:" + position.coords.latitude +
+  ",Longitude:" + position.coords.longitude;
+  ableButtonsGo();
 }
 
 const getPosition = () => {
@@ -29,27 +29,34 @@ const getPosition = () => {
 const showError = (error) => {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      alert.innerHTML = "Vous avez refusé d'être localisé.e dans les préférences de votre navigateur.";
+      alert.innerHTML = "Tu as refusé d'être localisé.e dans les préférences de ton navigateur.";
       break;
     case error.POSITION_UNAVAILABLE:
-      alert.innerHTML = "Nous ne parvenons pas à vous géolocaliser.";
+      alert.innerHTML = "Nous ne parvenons pas à te géolocaliser.";
       break;
     case error.TIMEOUT:
-      alert.innerHTML = "Nous ne parvenons pas à vous géolocaliser.";
+      alert.innerHTML = "Nous ne parvenons pas à te géolocaliser.";
       break;
     case error.UNKNOWN_ERROR:
-      alert.innerHTML = "Nous ne parvenons pas à vous géolocaliser.";
+      alert.innerHTML = "Nous ne parvenons pas à te géolocaliser.";
       break;
   }
   alert.style.padding = "0.5em 1em";
-  ableButtons();
+  ableButtonsNoGo();
 }
 
-const ableButtons = () => {
+const ableButtonsGo = () => {
+  go.disabled = false;
+  go.classList.remove("disabled");
+  go.classList.add("green");
+  input.classList.add("green");
+  autour.disabled = false;
+}
+
+const ableButtonsNoGo = () => {
   go.disabled = false;
   go.classList.remove("disabled");
   autour.disabled = false;
-  autour.classList.remove("disabled");
 }
 
 const disableButtons = () => {

@@ -55,7 +55,7 @@ const initMapbox = () => {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
     const address = JSON.parse(mapElement.dataset.address);
-    if (markers.length !== 0 && markers[0] !== "none") {
+    if (markers && markers.length !== 0) {
       addMarkersToMap(map, markers);
       addAddressToMap(map, address);
       fitMapToMarkers(map, markers);

@@ -5,33 +5,31 @@ class PagesController < ApplicationController
     return unless params[:query].present?
       
     if /Latitude:.+,Longitude:.+/.match(params[:query])
+      binding.pry
       latitude = params[:query].split(",")[0].split(":")[1].to_f
       longitude = params[:query].split(",")[1].split(":")[1].to_f
-      @geolocation = Geolocation.create(latitude: latitude, longitude: longitude)
-      @bike_parks = BikePark.near(@geolocation, MAPBOX_RADIUS)
+      location = Geolocation.create(latitude: latitude, longitude: longitude)
     else
-      @geolocation = SearchedAddress.create(address: params[:query])
-      @bike_parks = BikePark.near(params[:query], MAPBOX_RADIUS)
-      latitude = @geolocation.latitude
-      longitude = @geolocation.longitude
+      location = SearchedAddress.create(address: params[:query])
     end
-    compute_markers(latitude, longitude, @geolocation)
+    compute_markers(location.latitude, location.longitude, location)
   end
-
+  
   private
-
-  def compute_markers(latitude, longitude, geolocation)
-    return @markers = [] if @bike_parks.empty?
+  
+  def compute_markers(latitude, longitude, location)
+    bike_parks = BikePark.near(location, MAPBOX_RADIUS)
+    return @markers = [] if bike_parks.empty?
 
     @marker_address = {
       lat: latitude,
       lng: longitude,
     }
-    @markers = @bike_parks.map do |bike_park|
+    @markers = bike_parks.map do |bike_park|
       {
         lat: bike_park.lat,
         lng: bike_park.lng,
-        infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: @geolocation })
+        infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: location })
       }
     end
   end

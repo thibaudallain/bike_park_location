@@ -5,7 +5,6 @@ class PagesController < ApplicationController
     return unless params[:query].present?
       
     if /Latitude:.+,Longitude:.+/.match(params[:query])
-      binding.pry
       latitude = params[:query].split(",")[0].split(":")[1].to_f
       longitude = params[:query].split(",")[1].split(":")[1].to_f
       location = Geolocation.create(latitude: latitude, longitude: longitude)

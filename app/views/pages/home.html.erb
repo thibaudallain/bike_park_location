@@ -24,18 +24,12 @@
 <div class="no-results-container">
   <div class="alert-message"></div>
 
-  <% if @markers == [] %>
+  <% if @markers.nil? || @markers.empty? %>
     <div class="no-results">
-      Lance ta recherche en Île-de-France !
+      <%= @markers.nil? ? 'Lance ta recherche en Île-de-France !' : 
+      "Désolé, nous n'avons trouvé aucun parc à vélos à moins de 500m..." %>
     </div>
   <% end %>
-
-  <% if @markers == ["none"] %>
-    <div class="no-results">
-      Désolé, nous n'avons trouvé aucun parc à vélos à moins de 500m...
-    </div>
-  <% end %>
-
 </div>
 
 <div class="footer">© les contributeurs d'OpenStreetMap sous licence ODbL</div>

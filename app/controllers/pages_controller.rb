@@ -1,47 +1,35 @@
 class PagesController < ApplicationController
+  MAPBOX_RADIUS = 0.5
+
   def home
-    if params[:query].present?
-      if /Latitude:.+,Longitude:.+/.match(params[:query])
-        latitude = params[:query].split(",")[0].split(":")[1].to_f
-        longitude = params[:query].split(",")[1].split(":")[1].to_f
-        @geolocation = Geolocation.create(latitude: latitude, longitude: longitude)
-        @bike_parks = BikePark.near(@geolocation, 0.5)
-        if @bike_parks.length == 0
-          @markers = ["none"]
-        else
-          @marker_address = {
-            lat: latitude,
-            lng: longitude,
-          }
-          @markers = @bike_parks.map do |bike_park|
-            {
-              lat: bike_park.lat,
-              lng: bike_park.lng,
-              infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: @geolocation })
-            }
-          end
-        end
-      else
-        @searched_address = SearchedAddress.create(address: params[:query])
-        @bike_parks = BikePark.near(params[:query], 0.5)
-        if @bike_parks.length == 0
-          @markers = ["none"]
-        else
-          @marker_address = {
-            lat: @searched_address.latitude,
-            lng: @searched_address.longitude,
-          }
-          @markers = @bike_parks.map do |bike_park|
-            {
-              lat: bike_park.lat,
-              lng: bike_park.lng,
-              infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: @searched_address })
-            }
-          end
-        end
-      end
+    return unless params[:query].present?
+      
+    if /Latitude:.+,Longitude:.+/.match(params[:query])
+      latitude = params[:query].split(",")[0].split(":")[1].to_f
+      longitude = params[:query].split(",")[1].split(":")[1].to_f
+      location = Geolocation.create(latitude: latitude, longitude: longitude)
     else
-      @markers = []
+      location = SearchedAddress.create(address: params[:query])
+    end
+    compute_markers(location.latitude, location.longitude, location)
+  end
+  
+  private
+  
+  def compute_markers(latitude, longitude, location)
+    bike_parks = BikePark.near(location, MAPBOX_RADIUS)
+    return @markers = [] if bike_parks.empty?
+
+    @marker_address = {
+      lat: latitude,
+      lng: longitude,
+    }
+    @markers = bike_parks.map do |bike_park|
+      {
+        lat: bike_park.lat,
+        lng: bike_park.lng,
+        infoWindow: render_to_string(partial: "info_window", locals: { bike_park: bike_park, address: location })
+      }
     end
   end
 end
